@@ -103,7 +103,7 @@ int main()
 
         int nivel = choose_level();
         //cout << "NIVEL: " << nivel << endl;
-        cout << "\nDo you want to play again?: " << endl;
+        cout << "\nDo you want to continue(Y/n)?: " << endl;
         cin >> play;
     }
     cout << "\nBye Bye..." << endl;
