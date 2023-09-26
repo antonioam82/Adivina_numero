@@ -11,14 +11,26 @@ void LimpiarPantalla(){
 	}
 }
 
-void check_num(string entrada){
-    try {
-        int valor = stoi(entrada);
-    } catch (const invalid_argument&) {
-        cout << "La entrada no es un número entero válido." << endl;
-    } catch (const out_of_range&) {
-        cout << "El numero es demasiado grande para ser representado como un entero." << endl;
+int enter_num() {
+    string entrada;
+    bool entradaValida = false;  // Variable booleana para controlar el ciclo
+    int valor = 0;  // Variable para almacenar el valor entero
+
+    while (!entradaValida) {  // Continuar hasta que la entrada sea válida
+        cout << "Introduce numero: ";
+        cin >> entrada;
+
+        try {
+            valor = stoi(entrada);  // Intentar convertir la entrada en un entero
+            entradaValida = true;  // Establecer la entrada como válida
+        } catch (const invalid_argument&) {
+            cout << "La entrada no es un numero entero valido." << endl;
+        } catch (const out_of_range&) {
+            cout << "El numero es demasiado grande para ser representado como un entero." << endl;
+        }
     }
+
+    return valor;  // Devolver el valor entero válido
 }
 
 void play_game(int level){
@@ -56,8 +68,7 @@ void play_game(int level){
     int counter = 0;
 
     while(guessed != secret_number && counter < max_intents){
-        cout << "Enter your number: ";
-        cin >> guessed;
+        guessed = enter_num();
         counter += 1;
         cout << counter << " intentos" << endl;
     }
