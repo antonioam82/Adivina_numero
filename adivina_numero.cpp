@@ -88,8 +88,7 @@ int choose_level(){
     cout << "NIVEL 4: ENTRE 0 Y 100000" << endl;
 
     while (true){
-        cout << "\nINGRESE OPCION: ";
-        cin >> level;
+        cout << "\nINGRESE OPCION: "; cin >> level;
 
         if (level >= 1 && level <= 4){
             play_game(level);
@@ -114,8 +113,7 @@ int main()
 
         int nivel = choose_level();
         //cout << "NIVEL: " << nivel << endl;
-        cout << "\nDo you want to continue(Y/n)?: " << endl;
-        cin >> play;
+        cout << "\nDo you want to continue(Y/n)?: "; cin >> play;
     }
     cout << "\nBye Bye..." << endl;
     return 0;
