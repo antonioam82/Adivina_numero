@@ -7,7 +7,7 @@ using namespace std;
 
 void LimpiarPantalla(){
 	if(system("cls") == -1){
-		cout<<"Error al borrar la pantalla.";
+		cout<<"Error al borrar la pantalla  :(";
 	}
 }
 
