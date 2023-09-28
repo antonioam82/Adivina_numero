@@ -76,7 +76,8 @@ void play_game(int level){
         //cout << "Diferencia: " << diferencia << endl;
         //cout << counter << " intentos" << endl;
         nueva_diferencia = abs(guessed - secret_number);
-        if(counter > 1){
+        
+        if(counter > 1 && guessed != secret_number){
             if(nueva_diferencia <= diferencia){
                     cout << "Te estas acercando (intentos " << counter <<")" << endl;
             }else{
