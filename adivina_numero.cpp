@@ -66,11 +66,24 @@ void play_game(int level){
     cout << texto << secret_number << endl;
     int guessed;
     int counter = 0;
+    int diferencia;
+    int nueva_diferencia;
 
     while(guessed != secret_number && counter < max_intents){
         guessed = enter_num();
+        //diferencia = abs(guessed - secret_number);
         counter += 1;
-        cout << counter << " intentos" << endl;
+        //cout << "Diferencia: " << diferencia << endl;
+        //cout << counter << " intentos" << endl;
+        nueva_diferencia = abs(guessed - secret_number);
+        if(counter > 1){
+            if(nueva_diferencia <= diferencia){
+                    cout << "Te estas acercando (intentos " << counter <<")" << endl;
+            }else{
+                    cout << "Te estas alejando (intentos " << counter <<")" << endl;
+            }
+        }
+        diferencia = nueva_diferencia;
     }
     if(guessed == secret_number){
         cout << "You win! in " << counter << " times." << endl;
