@@ -76,7 +76,7 @@ void play_game(int level){
         //cout << "Diferencia: " << diferencia << endl;
         //cout << counter << " intentos" << endl;
         nueva_diferencia = abs(guessed - secret_number);
-        
+
         if(counter > 1 && guessed != secret_number){
             if(nueva_diferencia <= diferencia){
                     cout << "Te estas acercando (intentos " << counter <<")" << endl;
@@ -128,6 +128,10 @@ int main()
         int nivel = choose_level();
         //cout << "NIVEL: " << nivel << endl;
         cout << "\nDo you want to continue(Y/n)?: "; cin >> play;
+        while(play != "Y" && play != "y" && play != "n" && play != "N"){
+        cout << "Wrong input: "; cin >> play;
+        }
+        //cin >> play;
     }
     cout << "\nBye Bye..." << endl;
     return 0;
