@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -68,23 +69,26 @@ void play_game(int level){
     int counter = 0;
     int diferencia;
     int nueva_diferencia;
+    int max_value = pow(10, level+1);
+    cout << max_value << endl;
 
     while(guessed != secret_number && counter < max_intents){
         guessed = enter_num();
-        //diferencia = abs(guessed - secret_number);
-        counter += 1;
-        //cout << "Diferencia: " << diferencia << endl;
-        //cout << counter << " intentos" << endl;
-        nueva_diferencia = abs(guessed - secret_number);
+        if(guessed > 0 && guessed <= max_value){
+            counter++;
+            nueva_diferencia = abs(guessed - secret_number);
 
-        if(counter > 1 && guessed != secret_number){
-            if(nueva_diferencia <= diferencia){
+            if(counter > 1 && guessed != secret_number){
+                if(nueva_diferencia <= diferencia){
                     cout << "Te estas acercando (intentos " << counter <<")" << endl;
-            }else{
+                }else{
                     cout << "Te estas alejando (intentos " << counter <<")" << endl;
+                }
             }
+            diferencia = nueva_diferencia;
+        }else{
+            cout << "Incorrect value for level " << level << " (must be 0 - " << max_value << ")"  << endl;
         }
-        diferencia = nueva_diferencia;
     }
     if(guessed == secret_number){
         cout << "You win! in " << counter << " times." << endl;
@@ -114,8 +118,7 @@ int choose_level(){
     return level;
 }
 
-int main()
-{
+int main(){
     string play = "Y";
     while(play == "Y" | play == "y"){
         LimpiarPantalla();
