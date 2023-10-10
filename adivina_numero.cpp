@@ -119,6 +119,8 @@ int choose_level(){
 }
 
 int main(){
+    system("color 02");
+    system("title Cuatro en Linea");
     string play = "Y";
     while(play == "Y" | play == "y"){
         LimpiarPantalla();
