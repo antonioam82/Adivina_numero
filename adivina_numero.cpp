@@ -1,8 +1,9 @@
 #include <iostream>
-#include <cstdlib>
-#include <string>
+#include <vector>
 #include <ctime>
-#include <cmath>
+#include <cstdlib>
+#include <cctype>
+#include <string>
 
 using namespace std;
 
@@ -12,132 +13,96 @@ void LimpiarPantalla(){
 	}
 }
 
-int enter_num() {
-    string entrada;
-    bool entradaValida = false;  // Variable booleana para controlar el ciclo
-    int valor = 0;  // Variable para almacenar el valor entero
+string computerOption(){
+    srand(static_cast<unsigned int>(time(nullptr)));
+    //lista de palabras
+    vector<string> palabras = {
+        "piedra", "papel", "tijera"
+    };
+    // indice aleatorio
+    int indiceAleatorio = rand() % palabras.size();
+    // Obtiene la palabra aleatoria
+    string palabraAleatoria = palabras[indiceAleatorio];
 
-    while (!entradaValida) {  // Continuar hasta que la entrada sea válida
-        cout << "Introduce numero: ";
-        cin >> entrada;
-
-        try {
-            valor = stoi(entrada);  // Intentar convertir la entrada en un entero
-            entradaValida = true;  // Establecer la entrada como válida
-        } catch (const invalid_argument&) {
-            cout << "La entrada no es un numero entero valido." << endl;
-        } catch (const out_of_range&) {
-            cout << "El numero es demasiado grande para ser representado como un entero." << endl;
-        }
-    }
-
-    return valor;  // Devolver el valor entero válido
+    return palabraAleatoria;
 }
 
-void play_game(int level){
-    int secret_number;
-    int max_intents;
-    string texto;
-    srand(static_cast<unsigned int>(std::time(nullptr)));
-    switch (level){
-    case 1:
-        texto = "Valor entre 0 y 100: ";
-        secret_number = std::rand() % 101;
-        max_intents = 50;
-        break;
-    case 2:
-        texto = "Valor entre 0 y 1000: ";
-        secret_number = std::rand() % 1001;
-        max_intents = 500;
-        break;
-    case 3:
-        texto = "Valor entre 0 y 10000: ";
-        secret_number = std::rand() % 10001;
-        max_intents = 5000;
-        break;
-    case 4:
-        texto = "Valor entre 0 y 100000: ";
-        secret_number = std::rand() % 100001;
-        max_intents = 50000;
-        break;
-    default:
-        cout << "Opcion no valida" << endl;
-        break;
-    }
-    cout << texto << secret_number << endl;
-    int guessed;
-    int counter = 0;
-    int diferencia;
-    int nueva_diferencia;
-    int max_value = pow(10, level+1);
-    cout << max_value << endl;
-
-    while(guessed != secret_number && counter < max_intents){
-        guessed = enter_num();
-        if(guessed > 0 && guessed <= max_value){
-            counter++;
-            nueva_diferencia = abs(guessed - secret_number);
-
-            if(counter > 1 && guessed != secret_number){
-                if(nueva_diferencia <= diferencia){
-                    cout << "Te estas acercando (intentos " << counter <<")" << endl;
-                }else{
-                    cout << "Te estas alejando (intentos " << counter <<")" << endl;
-                }
-            }
-            diferencia = nueva_diferencia;
-        }else{
-            cout << "Incorrect value for level " << level << " (must be 0 - " << max_value << ")"  << endl;
-        }
-    }
-    if(guessed == secret_number){
-        cout << "You win! in " << counter << " times." << endl;
-    }else{
-        cout << "Sorry, you loose." << endl;
-    }
+string convertToLower(string word){
+    for (char &caracter : word){
+        caracter = tolower(caracter);
+    };
+    return word;
 }
 
-int choose_level(){
-    int level;
-    cout << "\nESCOJA NIVEL DE DIFICULTAD" << endl;
-    cout << "NIVEL 1: ENTRE 0 Y 100" << endl;
-    cout << "NIVEL 2: ENTRE 0 Y 1000" << endl;
-    cout << "NIVEL 3: ENTRE 0 Y 10000" << endl;
-    cout << "NIVEL 4: ENTRE 0 Y 100000" << endl;
-
-    while (true){
-        cout << "\nINGRESE OPCION: "; cin >> level;
-
-        if (level >= 1 && level <= 4){
-            play_game(level);
+bool included(string elemento){
+    bool esta_presente = false;
+    vector<string> opciones = {"piedra","papel","tijera"};
+    for (int i = 0; i < opciones.size(); i++){
+        if (opciones[i] == elemento) {
+            esta_presente = true;
             break;
-        }else{
-            cout << "El nivel debe estar entre 1 y 4. Por favor, intente de nuevo." << endl;
         }
     }
-    return level;
+    return esta_presente;
 }
 
-int main(){
-    system("color 02");
-    system("title Cuatro en Linea");
-    string play = "Y";
-    while(play == "Y" | play == "y"){
-        LimpiarPantalla();
-        cout << "\n------------ADIVINA NUMERO SUPER-DESAFIO------------" << endl;
-        cout << "En este juego el usuario tiene que adivinar" << endl;
-        cout << "un numero escogido, al azar, por la computadora" << endl;
-        cout << "dentro de un rango determinado en funcion." << endl;
-        cout << "----------------------------------------------------" << endl;
+string enterOption(){
+    bool esta;
+    string option;
+    cout << "Piedra, Papel o Tijera: "; cin >> option;
 
-        int nivel = choose_level();
-        //cout << "NIVEL: " << nivel << endl;
-        cout << "\nDo you want to continue(Y/n)?: "; cin >> play;
-        while(play != "Y" && play != "y" && play != "n" && play != "N"){
-        cout << "Wrong input: "; cin >> play;
+    return option;
+}
+
+bool conti(){
+    string c;
+    cout << "Desea continuar?: "; cin >> c;
+    if(c == "Y" || c == "y"){
+        LimpiarPantalla();
+        return true;
+    }else{
+        cout << "BYE, BYE..." << endl;
+        return false;
+    };
+}
+
+int main()
+{
+    bool inclu;
+    string opcion;
+    string opcion_compu;
+    bool continuar = true;
+
+    //opcion = enterOption();
+    while(continuar == true){
+    cout << "-----------|JUGANDO A PIEDRA, PAPEL, TIJERA|-----------\n" << endl;
+    opcion = convertToLower(enterOption());
+    inclu = included(opcion);
+    opcion_compu = computerOption();
+    if(inclu == true){
+        cout << "TU OPCION: " << opcion << endl;
+        cout << "OPCION COMPU: " << opcion_compu << endl;
+        if(opcion != opcion_compu){
+            if(opcion == "piedra" && opcion_compu == "papel"){
+                cout << "\nPERDISTE: papel envuelve piedra" << endl;
+            }else if(opcion == "piedra" && opcion_compu == "tijera"){
+                cout << "\nGANASTE: piedra machaca tijera" << endl;
+            }else if(opcion == "papel" && opcion_compu == "piedra"){
+                cout << "\nGANASTE: papel envuelve piedra" << endl;
+            }else if(opcion == "papel" && opcion_compu == "tijera"){
+                cout << "\nPERDISTE: tijera corta papel" << endl;
+            }else if(opcion == "tijera" && opcion_compu == "piedra"){
+                cout << "\nPERDISTE: piedra machaca tijera" << endl;
+            }else{
+                cout << "\nGANASTE: tijera corta papel" << endl;
+            }
+        }else{
+            cout << "\nEMPATE" << endl;
         }
-        //cin >> play;
-    }
-    cout << "\nBye Bye..." << endl;
+    }else{
+        cout << "\nOPCION NO VALIDA" << endl;
+    };
+    continuar = conti();
+    };
     return 0;
 }
