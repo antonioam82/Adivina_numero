@@ -44,7 +44,6 @@ int seleccionarDificultad(){
                     opcion_valida = false;
                     break;
 
-
             }
         }
 
@@ -75,7 +74,6 @@ int main() {
                     // Aquí puedes agregar el código del juego
                     dificultad = seleccionarDificultad();
                     cout << "LA DIFICULTAD ESCOJIDA ES " << dificultad << " :)" << endl;
-
                     break;
                 case 2:
                     cout << "Ha elegido salir" << endl;
