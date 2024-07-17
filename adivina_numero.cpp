@@ -19,29 +19,29 @@ int seleccionarDificultad(){
        if(cin.fail()) {
             cin.clear(); // Limpia el estado de error
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descarta la entrada inválida
-            cout << "OPCION INVALIDA. Por favor, ingrese un numero entero (1, 2, 3 o 4)." << endl;
+            cout << "OPCION INVALIDA. Por favor, ingrese un numero entero (1, 2, 3 o 4).\n" << endl;
             opcion_valida = false; // Restablecer 'opcion' para mantener el bucle
         }else{
             switch(nivelDificultad){
                 case 1:
-                    cout << "NIVEL 1" << endl;
+                    cout << "NIVEL 1\n" << endl;
                     opcion_valida = true;
                     break;
                 case 2:
-                    cout << "NIVEL 2" << endl;
+                    cout << "NIVEL 2\n" << endl;
                     opcion_valida = true;
                     break;
                 case 3:
-                    cout << "NIVEL 3" << endl;
+                    cout << "NIVEL 3\n" << endl;
                     opcion_valida = true;
                     break;
                 case 4:
-                    cout << "NIVEL 4" << endl;
+                    cout << "NIVEL 4\n" << endl;
                     opcion_valida = true;
                     break;
                 default:
-                    cout << "OPCION NO VALIDA" << endl;
-                    opcion_valida = false;
+                    cout << "OPCION NO VALIDA\n" << endl;
+                    //opcion_valida = false;
                     break;
 
             }
@@ -65,7 +65,7 @@ int main() {
         if(cin.fail()) {
             cin.clear(); // Limpia el estado de error
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Descarta la entrada inválida
-            cout << "OPCION INVALIDA. Por favor, ingrese un numero entero (1 o 2)." << endl;
+            cout << "OPCION INVALIDA. Por favor, ingrese un numero entero (1 o 2).\n" << endl;
             opcion = 1; // Restablecer 'opcion' para mantener el bucle
         } else {
             switch(opcion) {
@@ -79,7 +79,7 @@ int main() {
                     cout << "Ha elegido salir" << endl;
                     break;
                 default:
-                    cout << "OPCION INVALIDA" << endl;
+                    cout << "OPCION INVALIDA\n" << endl;
                     break;
             }
         }
