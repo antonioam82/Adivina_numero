@@ -1,5 +1,7 @@
 #include <iostream>
 #include <limits>
+#include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -43,7 +45,6 @@ int seleccionarDificultad(){
                     cout << "OPCION NO VALIDA\n" << endl;
                     //opcion_valida = false;
                     break;
-
             }
         }
 
@@ -51,9 +52,19 @@ int seleccionarDificultad(){
     return nivelDificultad;
 }
 
+void game(int num){
+    int secretNum;
+    srand(time(NULL));
+    secretNum = (rand() % num) + 1;
+    cout << "MAXIMO: " << num << endl;
+    cout << "SECRET NUM: " << secretNum << endl;
+}
+
 int main() {
     int opcion = 1;
     int dificultad;
+    int n;
+
 
     while(opcion != 2) {
         cout << "*****ADIVINA NUMERO****" << endl;
@@ -73,7 +84,9 @@ int main() {
                     cout << "Ha escogido jugar" << endl;
                     // Aquí puedes agregar el código del juego
                     dificultad = seleccionarDificultad();
-                    cout << "LA DIFICULTAD ESCOJIDA ES " << dificultad << " :)" << endl;
+                    n = pow(10, dificultad + 1);
+                    game(n);
+
                     break;
                 case 2:
                     cout << "Ha elegido salir" << endl;
@@ -82,6 +95,7 @@ int main() {
                     cout << "OPCION INVALIDA\n" << endl;
                     break;
             }
+
         }
     }
 
