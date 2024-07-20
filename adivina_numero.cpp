@@ -47,7 +47,6 @@ int seleccionarDificultad(){
                     break;
             }
         }
-
     }
     return nivelDificultad;
 }
@@ -64,7 +63,6 @@ int main() {
     int opcion = 1;
     int dificultad;
     int n;
-
 
     while(opcion != 2) {
         cout << "*****ADIVINA NUMERO****" << endl;
@@ -95,7 +93,6 @@ int main() {
                     cout << "OPCION INVALIDA\n" << endl;
                     break;
             }
-
         }
     }
 
