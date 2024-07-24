@@ -53,10 +53,27 @@ int seleccionarDificultad(){
 
 void game(int num){
     int secretNum;
+    int intentos = 0;
+    int numero;
     srand(time(NULL));
     secretNum = (rand() % num) + 1;
     cout << "MAXIMO: " << num << endl;
     cout << "SECRET NUM: " << secretNum << endl;
+
+    while(numero != secretNum){
+        cout << "Introduce numero: ";
+        cin >> numero;
+        intentos++;
+        if(numero != secretNum){
+            if(numero < secretNum){
+                cout << "EL NUMERO INTRODUCIDO ES MENOR QUE EL NUMERO  SECRETO" << endl;
+            }else{
+                cout << "EL NUMERO INTRODUCIDO ES MAYOR QUE EL NUMERO  SECRETO" << endl;
+        };
+        }
+    }
+    cout << "Numero adivinado en " << intentos << " intentos" << endl;
+
 }
 
 int main() {
