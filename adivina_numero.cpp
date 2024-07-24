@@ -5,6 +5,12 @@
 
 using namespace std;
 
+void LimpiarPantalla(){
+	if(system("cls") == -1){
+		cout<<"Error al borrar la pantalla  :(";
+	}
+}
+
 int seleccionarDificultad(){
     bool opcion_valida = false;
     int nivelDificultad;
@@ -55,6 +61,8 @@ void game(int num){
     int secretNum;
     int intentos = 0;
     int numero;
+    string conti;
+
     srand(time(NULL));
     secretNum = (rand() % num) + 1;
     cout << "MAXIMO: " << num << endl;
@@ -73,6 +81,8 @@ void game(int num){
         }
     }
     cout << "Numero adivinado en " << intentos << " intentos" << endl;
+    cout << "Igrese cualquier tecla para continuar: ";
+    cin >> conti;
 
 }
 
@@ -82,6 +92,7 @@ int main() {
     int n;
 
     while(opcion != 2) {
+
         cout << "*****ADIVINA NUMERO****" << endl;
         cout << "1 --------------- JUGAR" << endl;
         cout << "2 ----------------SALIR" << endl;
@@ -101,7 +112,7 @@ int main() {
                     dificultad = seleccionarDificultad();
                     n = pow(10, dificultad + 1);
                     game(n);
-
+                    LimpiarPantalla();
                     break;
                 case 2:
                     cout << "Ha elegido salir" << endl;
